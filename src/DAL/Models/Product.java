@@ -1,7 +1,8 @@
 package DAL.Models;
 
 public class Product {
-    static int id = 0;
+    static int idCounter = 0;
+    int id;
     String name;
     String description;
     double price;
@@ -9,7 +10,7 @@ public class Product {
     Category category;
 
     public Product(String name, String description, double price, int quantityInStock, Category category) {
-        id++;
+        this.id = ++idCounter;
         this.name = name;
         this.description = description;
         this.price = price;
@@ -17,5 +18,18 @@ public class Product {
         this.category = category;
     }
 
+    public int getId() {
+        return id;
+    }
 
+    @Override
+    public String toString() {
+        return "Product " + id +
+                ": name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", quantityInStock=" + quantityInStock +
+                ", category=" + category +
+                '}';
+    }
 }
