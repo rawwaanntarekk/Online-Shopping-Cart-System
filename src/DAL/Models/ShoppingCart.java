@@ -1,13 +1,25 @@
 package DAL.Models;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class ShoppingCart {
-    private List<CartItem> items;
+    List<CartItem> items;
 
     public ShoppingCart() {
         this.items = new ArrayList<>();
+    }
+
+    public void displayCart() {
+        for (CartItem item : items) {
+            System.out.println(item);
+        }
+        System.out.println("Total: " + calculateTotal());
+    }
+
+    public Collection<CartItem> getItems() {
+        return items;
     }
 
     public void addItem(Product product, int quantity) {
@@ -33,21 +45,6 @@ public class ShoppingCart {
         }
     }
 
-    public double calculateTotal() {
-        double total = 0;
-        for (CartItem item : items) {
-            total += item.getSubtotal();
-        }
-        return total;
-    }
-
-    public void displayCart() {
-        for (CartItem item : items) {
-            System.out.println(item);
-        }
-        System.out.println("Total: " + calculateTotal());
-    }
-
     private CartItem findItemByProduct(Product product) {
         for (CartItem item : items) {
             if (item.getProduct().equals(product)) {
@@ -56,4 +53,19 @@ public class ShoppingCart {
         }
         return null;
     }
+
+    public double calculateTotal() {
+        double total = 0;
+        for (CartItem item : items) {
+            total += item.getSubtotal();
+        }
+        return total;
+    }
+
+    public void clearCart() {
+        items.clear();
+    }
+
+
+
 }

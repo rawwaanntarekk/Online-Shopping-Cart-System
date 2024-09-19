@@ -1,5 +1,7 @@
 package DAL.Models;
 
+import BLL.Services.ShoppingCartService;
+
 public class Product {
     // ID counter for product instances
     private static int idCounter = 0;
@@ -35,6 +37,7 @@ public class Product {
             throw new IllegalArgumentException("Quantity in stock cannot be negative");
         }
         this.quantityInStock = quantityInStock;
+
         
         this.category = category;
     }
@@ -82,13 +85,6 @@ public class Product {
         this.quantityInStock = quantityInStock;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
 
     @Override
     public String toString() {
